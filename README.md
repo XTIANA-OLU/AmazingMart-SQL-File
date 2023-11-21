@@ -33,12 +33,44 @@ Data Validation: Click the link for Power BI visualization [live visualization](
 
 SQL Software- Studio Server Management System.
 
-A. ### Key Performance Indicators 
+ 
+ # A. Key Performance Indicators 
 
-1. Total Orders
+1. ### Total Orders
 
 SELECT COUNT (OrderID) AS TotalOrder FROM dbo.OrderBreakdown$
 
 #### Result
 
-![](
+![](TotalOrders.png)
+
+2. ### Total Sales
+
+SELECT SUM(Sales) AS Totalsales FROM OrderBreakdown$
+
+#### Result
+
+![](Totalsales.png)
+
+3. ### Total Profit
+
+SELECT SUM(Profit)  AS Totalprofit FROM OrderBreakdown$
+
+#### Result
+
+![](TotalProfit.png)
+
+4. ### Company Profit Margin
+
+Select SUM(Profit)/SUM(Sales)*100 AS profit_Margin FROM OrderBreakdown$
+
+#### Results
+
+![](CompanyProfitMargin.png)
+
+
+
+
+
+   
+
