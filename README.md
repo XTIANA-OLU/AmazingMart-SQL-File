@@ -45,6 +45,8 @@ SELECT COUNT (OrderID) AS TotalOrder FROM dbo.OrderBreakdown$
 
 ![](TotalOrders.png)
 
+### 2. Total Cost Price
+
 ### 2. Total Sales
 
 SELECT SUM(Sales) AS Totalsales FROM OrderBreakdown$
@@ -212,6 +214,8 @@ WHERE Discount between 0.3 and 1
 
 ### Result :
 ![](ProfitGreaterthan30.png)
+
+### 19. 
 
 
 
