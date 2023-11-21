@@ -14,7 +14,8 @@ Data Validation- Testing the results generated from Power BI and validating this
 
 Data Structure- Two tables are included in the dataset named "List of Orders" and " Orders Breakdown".
 
-- Table 1 : List Of Orders ![](List of Orders(Table).png)
+- Table 1: List Of Orders
+  ![]()
 
 
 # Analysing Pipelines using SQL queries 
@@ -201,7 +202,7 @@ WHERE Discount between 0 and 0.3
 
 
 ### Result :
-![](ProfitLessthan30%.png)
+![](ProfitLessthan30.png)
 
 
 ### 18.  Total Profit when the discount is greater than 30%
@@ -210,7 +211,7 @@ SELECT SUM(Profit) AS Total profit FROM OrderBreakdown$
 WHERE Discount between 0.3 and 1
 
 ### Result :
-![](ProfitGreaterthan30%.png)
+![](ProfitGreaterthan30.png)
 
 
 
