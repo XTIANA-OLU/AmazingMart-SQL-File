@@ -201,6 +201,7 @@ WHERE Discount between 0 and 0.3
 
 
 ### Result :
+![](ProfitLessthan30%.png)
 
 
 ### 18.  Total Profit when the discount is greater than 30%
@@ -209,6 +210,7 @@ SELECT SUM(Profit) AS Total profit FROM OrderBreakdown$
 WHERE Discount between 0.3 and 1
 
 ### Result :
+![](ProfitGreaterthan30%.png)
 
 
 
