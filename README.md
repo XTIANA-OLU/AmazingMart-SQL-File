@@ -29,8 +29,16 @@ Import-Dataset was imported into SSMS as an Excel workbook using the Microsoft A
 
 # Analysis 
 
-Data Validation: Click link for Power BI visualization [live visualization](https://app.powerbi.com/groups/me/reports/b5d02386-ee1f-4e0d-9377-2dde1ee5a59b/ReportSectioneb36539ae679103d20f1?experience=power-bi)
+Data Validation: Click the link for Power BI visualization [live visualization](https://app.powerbi.com/groups/me/reports/b5d02386-ee1f-4e0d-9377-2dde1ee5a59b/ReportSectioneb36539ae679103d20f1?experience=power-bi)
 
 SQL Software- Studio Server Management System.
 
-Key Performance Indicators 
+A. ### Key Performance Indicators 
+
+1. Total Orders
+
+SELECT COUNT (OrderID) AS TotalOrder FROM dbo.OrderBreakdown$
+
+#### Result
+
+![](
