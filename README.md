@@ -194,23 +194,22 @@ SELECT ROUND(SUM(Sales/(1-Discount)),2)-SUM(Sales-Profit) AS Totalprofit_Bdiscou
 ### Result :
 ![](TotalProfit-WithoutDiscount.png)
 
-### 17. Total Profit when discount is less than 30%
+### 17. Total Profit when the discount is less than 30%
 
 SELECT SUM(Profit) AS Total profit FROM OrderBreakdown$
 WHERE Discount between 0 and 0.3
 
 
 ### Result :
-![](Profit_Lessthan30%.png)
+
 
 ### 18.  Total Profit when the discount is greater than 30%
 
 SELECT SUM(Profit) AS Total profit FROM OrderBreakdown$
 WHERE Discount between 0.3 and 1
 
-
 ### Result :
-![](Profit_Greaterthan30%.png)
+
 
 
 
