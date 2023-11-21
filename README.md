@@ -166,7 +166,28 @@ GROUP BY Country
 ORDER BY TotalSales desc
 
 ### Result :
+![](CountrySales.png)
+
+# E. Company Sales Analysis and Discount
+
+### 14. Discount by Profit
+
+SELECT Discount AS Discount,SUM(Profit) AS TotalProfit FROM OrderBreakdown$
+GROUP BY Discount
+ORDER BY Discount desc
+
+### Result :
+![](DiscountTable.png)
+
+### 15.  Total Sales Without Discount
+
+SELECT ROUND(SUM(Sales/(1-Discount)),2) AS Totalsales_Bdiscount FROM OrderBreakdown$
+
+### Result :
 ![](
+
+
+
 
 
 
