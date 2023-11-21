@@ -36,27 +36,27 @@ SQL Software- Studio Server Management System.
  
  # A. Key Performance Indicators 
 
-1. ### Total Orders
+ ### 1. Total Orders
 
 SELECT COUNT (OrderID) AS TotalOrder FROM dbo.OrderBreakdown$
 
-#### Result
+#### Result :
 
 ![](TotalOrders.png)
 
-2. ### Total Sales
+### 2. Total Sales
 
 SELECT SUM(Sales) AS Totalsales FROM OrderBreakdown$
 
-#### Result
+#### Result :
 
 ![](Totalsales.png)
 
-3. ### Total Profit
+### 3. Total Profit
 
 SELECT SUM(Profit)  AS Totalprofit FROM OrderBreakdown$
 
-#### Result
+#### Result :
 
 ![](TotalProfit.png)
 
@@ -64,9 +64,119 @@ SELECT SUM(Profit)  AS Totalprofit FROM OrderBreakdown$
 
 Select SUM(Profit)/SUM(Sales)*100 AS profit_Margin FROM OrderBreakdown$
 
-#### Results
+#### Result :
 
 ![](CompanyProfitMargin.png)
+
+# B. Yearly Performance
+
+ ### 5. Company Yearly Sales
+
+SELECT YEAR(Date) AS Year,SUM(Sales) AS Totalsales FROM OrderBreakdown$
+JOIN dbo.ListOfOrders$ ON dbo.ListOfOrders$.OrderID=OrderBreakdown$.OrderID
+GROUP BY YEAR(Date)
+ORDER BY YEAR(Date)
+
+#### Result :
+
+![](CompanyYearlySales.png)
+
+ ### 6. Company Yearly Profit
+
+SELECT YEAR(Date) AS Year,SUM(Profit) AS Totalprofit FROM OrderBreakdown$
+JOIN dbo.ListOfOrders$ ON dbo.ListOfOrders$.OrderID=OrderBreakdown$.OrderID
+GROUP BY YEAR(Date)
+ORDER BY YEAR(Date)
+
+### Result :
+
+ ![](CompanyYearlyProfit.png)
+
+ # C. Product Category
+
+ ### 7. Total Quantity Sold
+
+SELECT SUM(Quantity) AS TotalquantitySold FROM OrderBreakdown$
+
+
+#### Result :
+
+![](Totalquantitysold.png)
+
+### 8. Total QuantitySold by Category
+
+SELECT Category, SUM(Quantity) AS Totalquantity FROM OrderBreakdown$
+GROUP BY Category
+
+#### Result :
+
+![](Quantitysoldby_Category.png)
+
+### 9. Product Category by Year, Total Sales, and Total Profit
+
+SELECT Category, YEAR(Date) AS Year,SUM(Sales) AS Totalsales,SUM(Profit) AS Totalprofit FROM OrderBreakdown$
+JOIN dbo.ListOfOrders$ ON dbo.ListOfOrders$.OrderID=OrderBreakdown$.OrderID
+GROUP BY YEAR(Date),Category
+ORDER BY YEAR(Date)
+
+#### Result :
+
+![](CategoryYearly_sales&profit.png)
+
+# D. Country Analysis
+
+### 10. Country Profit  Margin
+
+Select  Country,SUM(Profit)/SUM(Sales)*100 AS profit_Margin FROM OrderBreakdown$
+JOIN dbo.ListOfOrders$ ON dbo.OrderBreakdown$.OrderID=dbo.ListOfOrders$.OrderID
+GROUP BY Country
+ORDER BY profit_Margin desc
+
+
+#### Result :
+
+![](CountryProfitMargin.png)
+
+### 11. Country by Quantity Sold and Profit
+
+SELECT  Country,SUM(Quantity) AS Totalquantitysold,SUM(Profit) AS Totalproffit FROM OrderBreakdown$
+JOIN dbo.ListOfOrders$ ON dbo.OrderBreakdown$.OrderID=dbo.ListOfOrders$.OrderID
+GROUP BY Country
+ORDER BY Totalprofit DESC
+
+### Result :
+
+![](CountryQuantity_Profit.png)
+
+### 12. Top Five Countries
+
+SELECT TOP(5) Country AS Top_5countries, SUM(Profit) AS Total profit FROM ListOfOrders$
+JOIN dbo.OrderBreakdown$ ON dbo.OrderBreakdown$.OrderID= dbo.ListOfOrders$.OrderID
+GROUP BY Country
+ORDER BY Totalprofit desc
+
+### Result :
+![](Top5Countries.png)
+
+### 13. Total Sales by Country
+
+SELECT Country,SUM(Sales) AS TotalSales FROM ListOfOrders$
+JOIN dbo.OrderBreakdown$ ON dbo.OrderBreakdown$.OrderID= dbo.ListOfOrders$.OrderID
+GROUP BY Country
+ORDER BY TotalSales desc
+
+### Result :
+![](
+
+
+
+
+
+
+    
+
+
+
 
 
 
