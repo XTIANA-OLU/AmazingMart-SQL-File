@@ -45,7 +45,14 @@ SELECT COUNT (OrderID) AS TotalOrder FROM dbo.OrderBreakdown$
 
 ![](TotalOrders.png)
 
-### 2. Total Sales
+### 2. Total Cost price
+
+SELECT SUM(Sales-Profit) AS TotalCostprice FROM OrderBreakdown$
+
+#### Result :
+![](Total_CostPrice.png)
+
+### 3. Total Sales
 
 SELECT SUM(Sales) AS Totalsales FROM OrderBreakdown$
 
@@ -53,7 +60,7 @@ SELECT SUM(Sales) AS Totalsales FROM OrderBreakdown$
 
 ![](Totalsales.png)
 
-### 3. Total Profit
+### 4. Total Profit
 
 SELECT SUM(Profit)  AS Totalprofit FROM OrderBreakdown$
 
@@ -61,7 +68,7 @@ SELECT SUM(Profit)  AS Totalprofit FROM OrderBreakdown$
 
 ![](TotalProfit.png)
 
-4. ### Company Profit Margin
+### 5. Company Profit Margin
 
 Select SUM(Profit)/SUM(Sales)*100 AS profit_Margin FROM OrderBreakdown$
 
@@ -71,7 +78,7 @@ Select SUM(Profit)/SUM(Sales)*100 AS profit_Margin FROM OrderBreakdown$
 
 # B. Yearly Performance
 
- ### 5. Company Yearly Sales
+ ### 6. Company Yearly Sales
 
 SELECT YEAR(Date) AS Year,SUM(Sales) AS Totalsales FROM OrderBreakdown$
 JOIN dbo.ListOfOrders$ ON dbo.ListOfOrders$.OrderID=OrderBreakdown$.OrderID
@@ -82,7 +89,7 @@ ORDER BY YEAR(Date)
 
 ![](CompanyYearlySales.png)
 
- ### 6. Company Yearly Profit
+ ### 7. Company Yearly Profit
 
 SELECT YEAR(Date) AS Year,SUM(Profit) AS Totalprofit FROM OrderBreakdown$
 JOIN dbo.ListOfOrders$ ON dbo.ListOfOrders$.OrderID=OrderBreakdown$.OrderID
@@ -95,7 +102,7 @@ ORDER BY YEAR(Date)
 
  # C. Product Category
 
- ### 7. Total Quantity Sold
+ ### 8. Total Quantity Sold
 
 SELECT SUM(Quantity) AS TotalquantitySold FROM OrderBreakdown$
 
@@ -104,7 +111,7 @@ SELECT SUM(Quantity) AS TotalquantitySold FROM OrderBreakdown$
 
 ![](Totalquantitysold.png)
 
-### 8. Total QuantitySold by Category
+### 9. Total QuantitySold by Category
 
 SELECT Category, SUM(Quantity) AS Totalquantity FROM OrderBreakdown$
 GROUP BY Category
@@ -113,7 +120,7 @@ GROUP BY Category
 
 ![](Quantitysoldby_Category.png)
 
-### 9. Product Category by Year, Total Sales, and Total Profit
+### 10. Product Category by Year, Total Sales, and Total Profit
 
 SELECT Category, YEAR(Date) AS Year,SUM(Sales) AS Totalsales,SUM(Profit) AS Totalprofit FROM OrderBreakdown$
 JOIN dbo.ListOfOrders$ ON dbo.ListOfOrders$.OrderID=OrderBreakdown$.OrderID
@@ -126,7 +133,7 @@ ORDER BY YEAR(Date)
 
 # D. Country Analysis
 
-### 10. Country Profit  Margin
+### 11. Country Profit  Margin
 
 Select  Country,SUM(Profit)/SUM(Sales)*100 AS profit_Margin FROM OrderBreakdown$
 JOIN dbo.ListOfOrders$ ON dbo.OrderBreakdown$.OrderID=dbo.ListOfOrders$.OrderID
@@ -138,7 +145,7 @@ ORDER BY profit_Margin desc
 
 ![](CountryProfitMargin.png)
 
-### 11. Country by Quantity Sold and Profit
+### 12. Country by Quantity Sold and Profit
 
 SELECT  Country,SUM(Quantity) AS Totalquantitysold,SUM(Profit) AS Totalproffit FROM OrderBreakdown$
 JOIN dbo.ListOfOrders$ ON dbo.OrderBreakdown$.OrderID=dbo.ListOfOrders$.OrderID
@@ -149,7 +156,7 @@ ORDER BY Totalprofit DESC
 
 ![](CountryQuantity_Profit.png)
 
-### 12. Top Five Countries
+### 13. Top Five Countries
 
 SELECT TOP(5) Country AS Top_5countries, SUM(Profit) AS Total profit FROM ListOfOrders$
 JOIN dbo.OrderBreakdown$ ON dbo.OrderBreakdown$.OrderID= dbo.ListOfOrders$.OrderID
@@ -159,7 +166,7 @@ ORDER BY Totalprofit desc
 ### Result :
 ![](Top5Countries.png)
 
-### 13. Total Sales by Country
+### 14. Total Sales by Country
 
 SELECT Country,SUM(Sales) AS TotalSales FROM ListOfOrders$
 JOIN dbo.OrderBreakdown$ ON dbo.OrderBreakdown$.OrderID= dbo.ListOfOrders$.OrderID
@@ -171,7 +178,7 @@ ORDER BY TotalSales desc
 
 # E. Company Sales Analysis and Discount
 
-### 14. Discount by Profit
+### 15. Discount by Profit
 
 SELECT Discount AS Discount,SUM(Profit) AS TotalProfit FROM OrderBreakdown$
 GROUP BY Discount
@@ -180,14 +187,14 @@ ORDER BY Discount desc
 ### Result :
 ![](DiscountTable.png)
 
-### 15.  Total Sales Without Discount
+### 16.  Total Sales Without Discount
 
 SELECT ROUND(SUM(Sales/(1-Discount)),2) AS Totalsales_Bdiscount FROM OrderBreakdown$
 
 ### Result :
 ![](TotalSales-WithoutDiscount.png)
 
-### 16. Total Profit Without Discount
+### 17. Total Profit Without Discount
 
 SELECT ROUND(SUM(Sales/(1-Discount)),2)-SUM(Sales-Profit) AS Totalprofit_Bdiscount FROM OrderBreakdown$
 
@@ -195,7 +202,7 @@ SELECT ROUND(SUM(Sales/(1-Discount)),2)-SUM(Sales-Profit) AS Totalprofit_Bdiscou
 ### Result :
 ![](TotalProfit-WithoutDiscount.png)
 
-### 17. Total Profit when the discount is less than 30%
+### 18. Total Profit when the discount is less than 30%
 
 SELECT SUM(Profit) AS Total profit FROM OrderBreakdown$
 WHERE Discount between 0 and 0.3
@@ -205,13 +212,28 @@ WHERE Discount between 0 and 0.3
 ![](ProfitLessthan30.png)
 
 
-### 18.  Total Profit when the discount is greater than 30%
+### 19.  Total Profit when the discount is greater than 30%
 
 SELECT SUM(Profit) AS Total profit FROM OrderBreakdown$
 WHERE Discount between 0.3 and 1
 
 ### Result :
 ![](ProfitGreaterthan30.png)
+
+### 20. Average number of days by Ship mode
+
+SELECT 
+    ShipMode,
+    AVG(DATEDIFF(day, Date, ShipDate)) AS AvgDeliveryTime 
+FROM ListOfOrders$
+GROUP BY ShipMode
+
+### Result :
+![](AverageNoOfdays_for_Delivery.png)
+
+
+
+# Thank you for reading
 
 
 
