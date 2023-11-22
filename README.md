@@ -1,4 +1,4 @@
-# Data Validation Using SQL Queries for AmazingMart Data
+#             Data Validation Using SQL Queries for AmazingMart Dataset
 
 ![](Image_Intro.jpg)
 
